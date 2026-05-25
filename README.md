@@ -32,3 +32,10 @@ Hostname: DESKTOP-TEYQ2NR
 MAC Address: 00:19:d1:b2:4d:ad
 Account Name: brolf
 User Name: Becka Rolf
+
+What I Learned: This exercise provided hands-on experience in executing an end-to-end incident response workflow. 
+Key takeaways include: Traffic Isolation: I practiced using specific Wireshark display filters, such as (http.request or tls.handshake.type eq 1) and !(ssdp) and ip.addr eq 45.131.214.85, to successfully isolate malicious command-and-control (C2) traffic.  
+Pivoting Techniques: I learned how to pivot from a malicious IP address to identify an internal victim host, demonstrating how to use NetBIOS (NBNS) and frame details to map a host's identity and MAC address. 
+Authentication Analysis: I gained proficiency in filtering for Kerberos traffic (kerberos.CNameString) to attribute network activity to specific user accounts within an Active Directory environment.  
+Packet Metadata Extraction: I improved my ability to use the "Find Packet" function to extract granular user information, such as full names from packet details, which is a vital skill for internal threat hunting. 
+Incident Documentation: I developed the ability to translate technical findings into a structured report, which is essential for effective communication within a Security Operations Center (SOC).  

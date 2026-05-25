@@ -1,6 +1,8 @@
 # Project-Network-Traffic-Incident-Analysis
 Objective: Identify an infected Windows host and attribute it to a specific user account using packet-level analysis.
+
 Link to lab: https://www.malware-traffic-analysis.net/2026/02/28/index.html
+
 1. Scenario Background
 I acted as a SOC analyst investigating NetSupport Manager RAT activity. The traffic, originating from 45.131.214.85 on TCP port 443, was detected starting at 19:55 UTC. My goal was to identify the internal host responsible for this traffic to stop the ongoing communication.
 

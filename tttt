@@ -1,0 +1,36 @@
+# Incident Analysis Report: NetSupport Manager RAT Detection
+
+## 1. Executive Summary
+[cite_start]On 2026-02-28, our SOC identified signature hits for NetSupport Manager RAT traffic[cite: 13]. [cite_start]The activity originated from an internal host communicating with the external IP `45.131.214.85` over TCP port 443, beginning at 19:55 UTC[cite: 13]. This report details the identification and profiling of the affected workstation.
+
+## 2. Investigation Methodology
+[cite_start]The investigation utilized packet capture (pcap) analysis to pivot from the malicious external infrastructure to the compromised internal host[cite: 14, 47].
+
+### A. Network Traffic Analysis
+* [cite_start]**Filter Logic**: I utilized the following Wireshark display filter to isolate malicious communications: `(http.request or tls.handshake.type eq 1) and !(ssdp) and ip.addr eq 45.131.214.85`[cite: 34, 35].
+* [cite_start]**Evidence**: The traffic revealed recurring `POST` requests to `http://45.131.214.85/1`, indicating active command-and-control (C2) communication[cite: 36].
+
+
+
+### B. Victim Host Identification
+* [cite_start]I pivoted to the internal IP address `10.2.28.88` to identify the source of the traffic[cite: 47].
+* [cite_start]By filtering for `nbns` traffic, I was able to extract the following device details from the frame information[cite: 50, 110]:
+    * [cite_start]**Host Name**: `DESKTOP-TEYQ2NR` [cite: 29]
+    * [cite_start]**MAC Address**: `00:19:d1:b2:4d:ad` [cite: 29]
+
+### C. User Attribution
+* [cite_start]I filtered for `kerberos.CNameString` to identify the user account involved in the Kerberos authentication traffic[cite: 111, 112].
+* [cite_start]The extracted account name was `brolf`[cite: 112, 155].
+* [cite_start]Searching the packet details for the string "Rolf" confirmed the full user name as **Becka Rolf**[cite: 215, 236, 300].
+
+## 3. Summary of Findings
+| Metric | Details |
+| :--- | :--- |
+| **Infected IP** | [cite_start]10.2.28.88 [cite: 29] |
+| **Hostname** | [cite_start]DESKTOP-TEYQ2NR [cite: 29] |
+| **MAC Address** | [cite_start]00:19:d1:b2:4d:ad [cite: 29] |
+| [cite_start]**Account Name** | brolf [cite: 29] |
+| **User Name** | [cite_start]Becka Rolf [cite: 29] |
+
+---
+[cite_start]*Exercise Source: [Malware-Traffic-Analysis.net](https://www.malware-traffic-analysis.net/2026/02/28/index.html) [cite: 3]*

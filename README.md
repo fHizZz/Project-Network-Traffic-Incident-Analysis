@@ -7,6 +7,7 @@ Link to lab: https://www.malware-traffic-analysis.net/2026/02/28/index.html
 I acted as a SOC analyst investigating NetSupport Manager RAT activity. The traffic, originating from 45.131.214.85 on TCP port 443, was detected starting at 19:55 UTC. My goal was to identify the internal host responsible for this traffic to stop the ongoing communication.
 
 2. Investigation Workflow
+
 A. Network Traffic Analysis
 I used the following Wireshark display filter to isolate malicious traffic: (http.request or tls.handshake.type eq 1) and !(ssdp) and ip.addr eq 45.131.214.85.
 The analysis revealed multiple POST requests to http://45.131.214.85/1, confirming consistent communication between the internal host and the malicious server.<img width="1941" height="1263" alt="Screenshot 2026-05-25 195049" src="https://github.com/user-attachments/assets/833de01a-8e10-4313-9799-f8e696be6044" />
@@ -29,10 +30,15 @@ I used the Find Packet... function to search for the string "Rolf" within the pa
 <img width="1892" height="1188" alt="Screenshot 2026-05-25 201537" src="https://github.com/user-attachments/assets/21b3d381-9ad5-4cdd-a1f9-8f61418f44b8" />
 
 3. Summary of Findings
+
 Infected IP: 10.2.28.88
+
 Hostname: DESKTOP-TEYQ2NR
+
 MAC Address: 00:19:d1:b2:4d:ad
+
 Account Name: brolf
+
 User Name: Becka Rolf
 
 # What I Learned
